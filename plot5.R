@@ -34,7 +34,8 @@ motor_vehicle <- vehicle | motor
 motor_vehicleSCC <- SCC[motor_vehicle, ]
 
 # Use the SCC codes to identify the relevant rows in the NEI dataset
-motor_vehicleNEI <- NEI[NEI$SCC %in% motor_vehicleSCC$SCC , ] 
+# Anything with type "ON-ROAD" should be included if it wasn't picked up already
+motor_vehicleNEI <- NEI[NEI$SCC %in% motor_vehicleSCC$SCC | NEI$type == "ON-ROAD", ] 
 
 # Selects only the data for Baltimore City, Maryland (fips = "24510")
 BaltMVData <- motor_vehicleNEI[motor_vehicleNEI$fips == "24510" , ] 
@@ -46,6 +47,6 @@ aggData <- aggregate(Emissions ~ year, BaltMVData, sum)
 png(filename = "plot5.png")
 barplot(aggData$Emissions, names.arg = aggData$year, main =
           "Emissions from motor vehicle-related sources in Baltimore City", ylab =
-          "PM2.5 emissions, tons", xlab = "Year")
+          "PM2.5 emissions, tons", xlab = "Year", ylim = c(0, 400))
 dev.off()
 
