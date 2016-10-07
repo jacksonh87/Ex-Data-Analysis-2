@@ -68,8 +68,8 @@ barplot(LACaggData$Emissions, names.arg = LACaggData$year, main =
           "PM2.5 emissions, tons", xlab = "Year", ylim = c(0, 5000))
 barplot((BaltaggData$Emissions/BaltaggData[1,2]*100), names.arg = BaltaggData$year, main =
           "Scaled Baltimore City Emissions, 1999 = 100", ylab =
-          "PM2.5 emissions, tons", xlab = "Year", ylim = c(0, 140)) 
+          "Relative PM2.5 emissions (1999 = 100)", xlab = "Year", ylim = c(0, 140)) 
 barplot((LACaggData$Emissions/LACaggData[1,2]*100), names.arg = LACaggData$year, main =
           "Scaled LA County Emissions, 1999 = 100", ylab =
-          "PM2.5 emissions, tons", xlab = "Year", ylim = c(0, 140)) 
+          "Relative PM2.5 emissions (1999 = 100)", xlab = "Year", ylim = c(0, 140)) 
 dev.off()
